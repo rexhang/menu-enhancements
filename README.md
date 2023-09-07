@@ -42,5 +42,5 @@ npm run build
 "explorer.copyRelativePathSeparator": "/",
 ```
 
-ps: 取值范围: `/` `\\` `auto` 默认 `auto` 其中 \\ 是转义符 + \ 所以最终地址应该是 app\image\avatar.png
+ps: 取值范围: `/` `\\` `auto` 默认 `auto` 其中 `\\` 是转义符(\) + `\` 所以最终地址应该是 **app\image\avatar.png** window系统盘路径支持 `/`  到 `\` 的转换 无需担心。
 
