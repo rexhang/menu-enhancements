@@ -3,7 +3,8 @@ import * as path from 'path';
 import { exec } from 'child_process';
 
 export function activate(context: vscode.ExtensionContext) {
-	// 注册命令
+
+	// displayTheFileInExplorer
 	const displayTheFileInExplorer = vscode.commands.registerCommand('extension.displayTheFileInExplorer', () => {
 		// 获取当前活动编辑器的文件URI
 		const activeEditor = vscode.window.activeTextEditor;
@@ -21,12 +22,30 @@ export function activate(context: vscode.ExtensionContext) {
 		// 提示文件路径
 		vscode.window.showInformationMessage(`已在资源管理器中打开 ${filePath} 所在目录并且选中`);
 
-		console.log(`当前文件路径: ${filePath}`);
+		// console.log(`当前文件路径: ${filePath}`);
 
 		// 打开资源管理器并选中文件所在的目录
-		openFileExplorer(fileDir, filePath);
+		openFileExplorer(filePath, true);
 	});
 
+	// displayTheProjectRoot
+	const displayTheProjectRoot = vscode.commands.registerCommand('extension.displayTheProjectRoot', () => {
+    const editor = vscode.window.activeTextEditor;
+    if (editor) {
+      const workspaceFolder = vscode.workspace.getWorkspaceFolder(editor.document.uri);
+      if (workspaceFolder) {
+        const projectRoot = workspaceFolder.uri.fsPath;
+        openFileExplorer(projectRoot, false);
+				vscode.window.showInformationMessage(`已在资源管理器中打开 ${projectRoot}`);
+      } else {
+        vscode.window.showErrorMessage('无法确定工作区文件夹。');
+      }
+    } else {
+      vscode.window.showErrorMessage('没有活动的编辑器。');
+    }
+  });
+
+	// copyRelativePath
 	const copyRelativePath = vscode.commands.registerCommand('extension.copyRelativePath', () => {
     const editor = vscode.window.activeTextEditor;
     if (editor) {
@@ -50,6 +69,7 @@ export function activate(context: vscode.ExtensionContext) {
     }
   });
 
+	// copyAbsolutePath
 	const copyAbsolutePath = vscode.commands.registerCommand('extension.copyAbsolutePath', () => {
     const editor = vscode.window.activeTextEditor;
     if (editor) {
@@ -68,14 +88,13 @@ export function activate(context: vscode.ExtensionContext) {
     }
   });
 
-	context.subscriptions.push(displayTheFileInExplorer, copyRelativePath, copyAbsolutePath);
+	context.subscriptions.push(displayTheFileInExplorer, displayTheProjectRoot, copyRelativePath, copyAbsolutePath);
 }
 
-function openFileExplorer(directoryPath: string, filePath: string) {
+function openFileExplorer(filePath: string, select = false) {
 	if (process.platform === 'win32') {
 		// Windows系统下使用explorer命令并选中文件
-		const command = `explorer /select,"${filePath}"`;
-
+		const command = !select ? `explorer ${filePath}` : `explorer /select,"${filePath}"`;
 		exec(command, (err) => {
 			if (err) {
 				// 由于 Windows 上的 explorer /select 命令不提供返回结果，exec 函数会将错误信息输出到控制台。

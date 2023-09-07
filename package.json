@@ -5,7 +5,7 @@
   "author": "rexhang",
   "email": "rexhang_work@outlook.com",
   "icon": "icon.png",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "rexhang.inc",
   "repository": {
     "type": "git",
@@ -26,6 +26,10 @@
         "title": "在资源管理器中显示该文件"
       },
       {
+        "command": "extension.displayTheProjectRoot",
+        "title": "打开项目根目录"
+      },
+      {
         "command": "extension.copyRelativePath",
         "title": "复制文件相对路径到剪贴板"
       },
@@ -39,7 +43,14 @@
         {
           "command": "extension.displayTheFileInExplorer",
           "group": "navigation",
-          "when": "resourceScheme == file"
+          "when": "resourceScheme == file",
+          "title": "在资源管理器中显示该文件"
+        },
+        {
+          "command": "extension.displayTheProjectRoot",
+          "group": "navigation",
+          "when": "resourceScheme == file",
+          "title": "打开项目根目录"
         },
         {
           "command": "extension.copyRelativePath",
