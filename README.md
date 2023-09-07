@@ -33,7 +33,7 @@ npm run build
 ### preview
 
 <div align="left">
-  <img style="height: 600px;" src="https://github.com/rexhang/menu-enhancements/assets/14832793/b22e5eff-ce3d-4659-ba5c-4adea2673401" />
+  <img style="height: auto;" src="https://github.com/rexhang/menu-enhancements/assets/14832793/b22e5eff-ce3d-4659-ba5c-4adea2673401" />
 </div>
 
 <div align="left">
