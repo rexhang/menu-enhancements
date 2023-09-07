@@ -26,7 +26,7 @@ npm run build
 
 ![image](https://github.com/rexhang/menu-enhancements/assets/14832793/a351b6a7-e1fe-4624-a6d9-5fc371001ddc)
 
-然后勾选[发布/构建]的VSIX文件即可
+然后勾选[发布/构建]的VSIX文件即可 [传送门](https://github.com/rexhang/menu-enhancements/releases)
 
 ### preview
 
