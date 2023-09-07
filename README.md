@@ -34,3 +34,13 @@ npm run build
 
 ![image](https://github.com/rexhang/menu-enhancements/assets/14832793/ac947521-0b04-4009-951a-f1b1e609cd1b)
 
+### how to use
+
+如需更改复制文件路径的拼接符号，请到用户设置里面添加这一项
+
+```json
+"explorer.copyRelativePathSeparator": "/",
+```
+
+ps: 取值范围: `/` `\\` `auto` 默认 `auto` 其中 \\ 是转义符 + \ 所以最终地址应该是 app\image\avatar.png
+
