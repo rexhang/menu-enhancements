@@ -24,19 +24,25 @@ npm run build
 
 ### how to install
 
-![image](https://github.com/rexhang/menu-enhancements/assets/14832793/a351b6a7-e1fe-4624-a6d9-5fc371001ddc)
+<div align="left">
+  <img style="height: 320px;" src="https://github.com/rexhang/menu-enhancements/assets/14832793/a351b6a7-e1fe-4624-a6d9-5fc371001ddc" />
+</div>
 
-然后勾选[发布/构建]的VSIX文件即可 [传送门](https://github.com/rexhang/menu-enhancements/releases)
+如图所示 vscode 内 选择到 **扩展标签** 点击 `...` 然后选择`从 VSIX 安装...` VSIX文件可以在 **[发布/构建]** 中拿到 **VSIX文件** 进行安装 [传送门](https://github.com/rexhang/menu-enhancements/releases)
 
 ### preview
 
-![image](https://github.com/rexhang/menu-enhancements/assets/14832793/6cf636d3-29e4-4808-9a1c-942fd0053d1d)
+<div align="left">
+  <img style="height: 600px;" src="https://github.com/rexhang/menu-enhancements/assets/14832793/b22e5eff-ce3d-4659-ba5c-4adea2673401" />
+</div>
 
-![image](https://github.com/rexhang/menu-enhancements/assets/14832793/ac947521-0b04-4009-951a-f1b1e609cd1b)
+<div align="left">
+  <img style="height: 500px;" src="https://github.com/rexhang/menu-enhancements/assets/14832793/ac947521-0b04-4009-951a-f1b1e609cd1b" />
+</div>
 
 ### how to use
 
-如需更改复制文件路径的拼接符号，请到用户设置里面添加这一项
+如需更改复制文件路径的拼接符号，请到用户设置里面添加这一项，默认 `auto` 根据系统自动识别
 
 ```json
 "explorer.copyRelativePathSeparator": "/",
