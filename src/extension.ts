@@ -34,8 +34,14 @@ export function activate(context: vscode.ExtensionContext) {
       const workspaceFolder = vscode.workspace.getWorkspaceFolder(editor.document.uri);
       if (workspaceFolder) {
         const relativePath = path.relative(workspaceFolder.uri.fsPath, filePath);
-        vscode.env.clipboard.writeText(relativePath);
-        vscode.window.showInformationMessage(`已复制相对路径到剪贴板: ${relativePath}`);
+
+				// 读取用户配置中的路径分隔符 默认 auto 不处理 如果 设置了 / 或者 \\ 则替换
+        const configuration = vscode.workspace.getConfiguration('explorer');
+				const separator: 'auto' | '/' | '\\' = configuration.get('copyRelativePathSeparator', 'auto');
+				const formattedPath = ['/', '\\'].includes(separator) ? relativePath.replace(/\\/g, separator) : relativePath;
+
+        vscode.env.clipboard.writeText(formattedPath);
+        vscode.window.showInformationMessage(`已复制相对路径到剪贴板: ${formattedPath}`);
       } else {
         vscode.window.showErrorMessage('无法确定工作区文件夹。');
       }
@@ -48,8 +54,15 @@ export function activate(context: vscode.ExtensionContext) {
     const editor = vscode.window.activeTextEditor;
     if (editor) {
       const filePath = editor.document.uri.fsPath;
-      vscode.env.clipboard.writeText(filePath);
-      vscode.window.showInformationMessage(`已复制绝对路径到剪贴板: ${filePath}`);
+
+			// 读取用户配置中的路径分隔符 默认 auto 不处理 如果 设置了 / 或者 \\ 则替换
+			const configuration = vscode.workspace.getConfiguration('explorer');
+			const separator: 'auto' | '/' | '\\' = configuration.get('copyRelativePathSeparator', 'auto');
+			const formattedPath = ['/', '\\'].includes(separator) ? filePath.replace(/\\/g, separator) : filePath;
+
+			// ps: windows中具备 直接访问 /xx/xx/xx 的能力 会自动转换为 \xx\xx\xx	所以不需要处理
+      vscode.env.clipboard.writeText(formattedPath);
+      vscode.window.showInformationMessage(`已复制绝对路径到剪贴板: ${formattedPath}`);
     } else {
       vscode.window.showErrorMessage('没有活动的编辑器。');
     }
